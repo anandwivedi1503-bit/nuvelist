@@ -1,6 +1,8 @@
 # How the Nuvelist website is built (learning notes)
 
-This is the “why” behind the code. Read this while you click around the live site.
+**Author:** Anand Dwivedi, Fullstack Developer (SDE)
+
+This is the short “why” behind the code. For the full specification, read **[DOCUMENTATION.md](./DOCUMENTATION.md)**.
 
 ## 1. Three layers of an e-commerce + CRM site
 
