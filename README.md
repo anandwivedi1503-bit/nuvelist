@@ -1,43 +1,20 @@
-# Nuvelist — Clinical Skin Actives
+# Nuvelist
 
-**E-commerce + CRM platform for Nuvelist (India)**
-
-| | |
-| --- | --- |
-| **Product** | Direct-to-consumer skincare store with staff CRM |
-| **Developed by** | **Anand Dwivedi** |
-| **Role** | Fullstack Developer (SDE) |
-| **Repository** | [github.com/anandwivedi1503-bit/nuvelist](https://github.com/anandwivedi1503-bit/nuvelist) |
-
-This repository is the complete Nuvelist website: customer storefront, checkout (Cash on Delivery + Razorpay), accounts, and an admin CRM for orders, catalogue, customers, and inquiries.
-
-**Full technical documentation:** [DOCUMENTATION.md](./DOCUMENTATION.md)  
-**How the code works (learning guide):** [LEARNING.md](./LEARNING.md)  
-**Public hosting notes:** [DEPLOY.md](./DEPLOY.md)
-
----
-
-## What the website does
-
-Customers can browse Nuvelist actives (Daily Barrier Cleanser, Peptide Lip Repair, Clinical Ritual Duo), add to bag, and pay in **INR with GST included**. Staff can log in at `/admin` and manage the house like a small CRM.
-
-Prices, stock, and orders live in a database. The browser is never trusted for price.
+Indian clinical-skincare e-commerce + CRM.
 
 ## Stack
 
-- **Frontend:** Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS  
-- **Backend:** Next.js Route Handlers (`src/app/api`)  
-- **Database:** Prisma ORM + PostgreSQL (Neon in production)  
-- **Auth:** JWT in an httpOnly cookie, bcrypt password hashes  
-- **Payments:** Razorpay (UPI / cards / netbanking) and Cash on Delivery  
-- **Validation:** Zod  
-- **Region:** Indian addresses, PIN, mobile, GST-inclusive money in paise  
+| Piece | Role |
+| --- | --- |
+| Next.js App Router | Website pages and API routes |
+| Prisma + PostgreSQL | Database |
+| JWT httpOnly cookie | Login sessions |
+| Razorpay | UPI / cards / netbanking |
+| Zod | Form validation |
 
-## Run on your computer
+## Local setup
 
 ```bash
-git clone https://github.com/anandwivedi1503-bit/nuvelist.git
-cd nuvelist
 cp .env.example .env
 npm install
 npx prisma db push
@@ -45,22 +22,30 @@ npm run db:seed
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open http://localhost:3000
 
-| | |
-| --- | --- |
-| Shop | http://localhost:3000 |
-| CRM | http://localhost:3000/admin |
-| Admin email | `leo.a@example.org` |
-| Admin password | `Nuvelist@Admin1` (change after first login) |
-| Demo coupon | `GLOW10` (10% off, min ₹999) |
+### Seeded admin (CRM)
 
-PostgreSQL connection strings go in `.env` as `DATABASE_URL` and `DIRECT_URL`. Never commit `.env` to GitHub.
+- URL: `/admin`
+- Email: `leo.a@example.org`
+- Password: `Nuvelist@Admin1` (change after first login)
 
-## Author
+Coupon: `GLOW10` (10% off, min ₹999)
 
-**Anand Dwivedi**  
-Fullstack Developer (SDE)  
-Designed and implemented the Nuvelist storefront, APIs, data model, checkout (COD + Razorpay), and admin CRM.
+Set `DATABASE_URL` and `DIRECT_URL` in `.env`. Do not commit `.env`.
 
-© Nuvelist brand assets belong to the company. Application source in this repository is the engineering work of Anand Dwivedi.
+## Razorpay
+
+```
+NEXT_PUBLIC_RAZORPAY_KEY_ID=rzp_test_...
+RAZORPAY_KEY_SECRET=...
+RAZORPAY_WEBHOOK_SECRET=...
+```
+
+Until keys are present, Cash on Delivery still works.
+
+## Production
+
+- Change `AUTH_SECRET`
+- Keep secrets on the host, never in git
+- Hosting notes: `DEPLOY.md`
