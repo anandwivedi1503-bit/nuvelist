@@ -7,7 +7,7 @@ Indian clinical-skincare e-commerce + CRM for Nuvelist.
 | Piece | Role |
 | --- | --- |
 | Next.js App Router | Website pages and API routes in one project |
-| Prisma + SQLite | Database (swap `DATABASE_URL` to PostgreSQL for production) |
+| Prisma + PostgreSQL (Neon) | Database on the live Vercel site |
 | JWT httpOnly cookie | Login sessions |
 | Razorpay | UPI / cards / netbanking |
 | Zod | Validates every form before it hits the database |
@@ -25,6 +25,8 @@ npm run dev
 ```
 
 Open http://localhost:3000
+
+To send your CEO a public `*.vercel.app` link, follow **DEPLOY.md** (Neon + Vercel). Do not send `localhost:3000`.
 
 ### Seeded admin (CRM)
 
